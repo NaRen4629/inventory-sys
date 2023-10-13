@@ -1,0 +1,7 @@
+.required {
+    color: red;
+}
+.sidebar-brand-text img {
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+}

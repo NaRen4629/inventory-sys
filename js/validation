@@ -1,0 +1,68 @@
+document.addEventListener('DOMContentLoaded', function() 
+{
+    const locForm = document.getElementById('supplierForm');
+
+    locForm.addEventListener('submit', function(event) 
+    {
+        const bname = document.getElementById('businessname');
+        const badd = document.getElementById('businessadd');
+        const phonum = document.getElementById('phonenum');
+        const telenum = document.getElementById('telenum');
+
+        const fname = document.getElementById('firstname');
+        const email = document.getElementById('email');
+        const lname = document.getElementById('lastname');
+        const mi = document.getElementById('middlename');
+
+
+
+
+        if (bname.value.trim() === '') {
+            event.preventDefault();
+            bname.classList.add('invalid');
+            bname.nextElementSibling.style.display = '';
+        }
+
+        if (badd.value.trim() === '') {
+            event.preventDefault();
+            badd.classList.add('invalid');
+            badd.nextElementSibling.style.display = '';
+        }
+
+        if (phonum.value.trim() === '') {
+            event.preventDefault();
+            connum.classList.add('invalid');
+            connum.nextElementSibling.style.display = 'block';
+        }
+
+        if (telenum.value.trim() === '') {
+            event.preventDefault();
+            connum.classList.add('invalid');
+            connum.nextElementSibling.style.display = 'block';
+        }
+
+        if (fname.value.trim() === '') {
+            event.preventDefault();
+            fname.classList.add('invalid');
+            fname.nextElementSibling.style.display = 'block';
+        }
+
+        if (lname.value.trim() === '') {
+            event.preventDefault();
+            lname.classList.add('invalid');
+            lname.nextElementSibling.style.display = 'block';
+        }
+
+    });
+
+    const inputFields = document.querySelectorAll('input[type="text"]');
+    inputFields.forEach(function(inputField) {
+        inputField.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                this.classList.remove('invalid');
+                this.nextElementSibling.style.display = 'none';
+            } 
+        });
+
+    });
+}); 
