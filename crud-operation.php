@@ -393,8 +393,8 @@ if (isset($_POST['deleteEmployee'])) {
 	}
 
 
-	//add user
-	if (isset($_POST['addUsers'])) {
+//add user
+if (isset($_POST['addUsers'])) {
 		$database = new Connection();
 		$db = $database->open();
 		try {
@@ -474,6 +474,46 @@ if (isset($_POST['deleteUser'])) {
 	// Close connection
 	$database->close();
 	}
+
+	//add request form
+	
+//add request
+if (isset($_POST['add-request'])) {
+  // Decode the JSON data sent from the client
+  $data = json_decode(file_get_contents("php://input"));
+
+  $number = $data->number;
+  $item = $data->item;
+  $quantity = $data->quantity;
+  $price = $data->price;
+
+  // Create a connection to the database
+  $db = new Connection();
+  $conn = $db->open();
+
+  // Insert data into the tbl_request table
+  $sql = "INSERT INTO tbl_request (Request_No, Quality, Price, Date) VALUES (?, ?, ?, NOW())";
+
+  try {
+	  $stmt = $conn->prepare($sql);
+	  $stmt->execute([$number, $item, $price]);
+  } catch (PDOException $e) {
+	  echo "Error: " . $e->getMessage();
+  }
+
+  // Close the database connection
+  $db->close();
+
+  // Generate and save a PDF (you will need to customize this part)
+  require('tcpdf/tcpdf.php');
+  $pdf = new TCPDF();
+  // Add your PDF content here
+
+  $pdf->Output('request_form.pdf', 'F'); // Save the PDF file with a given name
+
+  echo "Data saved and PDF generated.";
+}
+
 
 ?>
 

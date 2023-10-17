@@ -166,6 +166,11 @@ include 'config/connection.php';
 
 
 <?php
+
 include 'includes/footer.php';
+
 include 'includes/scripts.php';
+
 ?>
+
+Previous
